@@ -54,6 +54,9 @@ class Pages extends WebModel {
                 'class' => SortableGridBehavior::className(),
                 'sortableAttribute' => 'ordern'
                 ],
+              'seo' => [
+                'class' => 'pistol88\seo\behaviors\SeoFields',
+            ],
         ];
     }
 
