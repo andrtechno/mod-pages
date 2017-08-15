@@ -41,8 +41,8 @@ class Module extends WebModule {
     protected function getDefaultModelClasses() {
         return [
             //  'Pages' => 'panix\shop\models\Pages',
-            'Pages' => 'app\system\modules\pages\models\Pages',
-            'PagesSearch' => 'app\system\modules\pages\models\PagesSearch',
+            'Pages' => 'panix\pages\models\Pages',
+            'PagesSearch' => 'panix\pages\models\PagesSearch',
         ];
     }
 
