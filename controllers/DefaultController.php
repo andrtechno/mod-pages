@@ -3,7 +3,7 @@
 namespace panix\pages\controllers;
 
 use Yii;
-use app\cms\controllers\WebController;
+use panix\engine\controllers\WebController;
 use panix\pages\models\Pages;
 use yii\web\NotFoundHttpException;
 
@@ -22,7 +22,7 @@ class DefaultController extends WebController {
     }
 
     public function actionView($url) {
-        die('z');
+
         $this->findModel($url);
         return $this->render('view', ['model' => $this->model]);
     }

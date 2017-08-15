@@ -8,9 +8,9 @@ use panix\engine\WebModule;
 class Module extends WebModule {
 
 
-    //public $routes = [
-    //    'page/<url>' => 'pages/default/view',
-    //];
+    public $routes = [
+        'page/<url>' => 'pages/default/view',
+    ];
 
     public function getNav() {
         return [
@@ -40,7 +40,6 @@ class Module extends WebModule {
 
     protected function getDefaultModelClasses() {
         return [
-            //  'Pages' => 'panix\shop\models\Pages',
             'Pages' => 'panix\pages\models\Pages',
             'PagesSearch' => 'panix\pages\models\PagesSearch',
         ];
