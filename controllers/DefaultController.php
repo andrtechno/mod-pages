@@ -1,10 +1,10 @@
 <?php
 
-namespace panix\pages\controllers;
+namespace panix\mod\pages\controllers;
 
 use Yii;
 use panix\engine\controllers\WebController;
-use panix\pages\models\Pages;
+use panix\mod\pages\models\Pages;
 use yii\web\NotFoundHttpException;
 
 class DefaultController extends WebController {

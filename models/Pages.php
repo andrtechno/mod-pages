@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\pages\models;
+namespace panix\mod\pages\models;
 
 use Yii;
 use panix\engine\WebModel;
