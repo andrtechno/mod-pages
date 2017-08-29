@@ -27,8 +27,17 @@ use yii\widgets\Pjax;
             ['class' => 'yii\grid\SerialColumn'],
             'id',
             'name',
-            ['class' => 'panix\engine\grid\ActionColumn'],
-            ],
+            'date_create:datetime',
+        [
+            'attribute' => 'date_create',
+            'format' => 'raw',
+            'contentOptions' => ['class' => 'text-center'],
+            'value' => function($model) {
+                return \panix\engine\CMS::date($model->date_create);
+            }
+        ],
+            ['class' => 'panix\engine\grid\columns\ActionColumn'],
+        ],
     ]);
     ?>
     <?php Pjax::end(); ?>

@@ -28,6 +28,6 @@ to the require section of your `composer.json` file.
 Add to web config.
 ```
     'modules' => [
-        'pages' => ['class' => 'panix\pages\Module'],
+        'pages' => ['class' => 'panix\mod\pages\Module'],
     ],
 ```

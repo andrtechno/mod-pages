@@ -6,6 +6,8 @@ use Yii;
 use panix\engine\WebModel;
 use app\models\User;
 use panix\engine\grid\sortable\SortableGridBehavior;
+use panix\engine\behaviors\TranslateBehavior;
+use panix\mod\pages\models\PagesTranslate;
 
 /**
  * This is the model class for table "pages".
@@ -28,7 +30,11 @@ class Pages extends WebModel {
     public function rules() {
         return [
             [['name', 'text', 'seo_alias'], 'required'],
-            [['name', 'seo_alias'], 'string', 'max' => 255]
+            [['name', 'seo_alias'], 'string', 'max' => 255],
+            [['date_update', 'date_create'], 'safe'],
+                //[['date_update'], 'date', 'format' => 'php:U']
+                /// [['date_update'], 'date','format'=>'php:U', 'timestampAttribute' => 'date_update','skipOnEmpty'=>  true],
+//[['date_update','date_create'], 'filter','filter'=>'strtotime'],
         ];
     }
 
@@ -39,7 +45,7 @@ class Pages extends WebModel {
         return [
             'id' => 'ID',
             'name' => 'Name',
-             'seo_alias' => 'Seo alias',
+            'seo_alias' => 'Seo alias',
             'text' => 'Text',
         ];
     }
@@ -48,16 +54,49 @@ class Pages extends WebModel {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function behaviors() {
+    public function getTranslations() {
+        return $this->hasMany(PagesTranslate::className(), ['object_id' => 'id']);
+    }
+
+    public function transactions() {
         return [
-            'dnd_sort' => [
-                'class' => SortableGridBehavior::className(),
-                'sortableAttribute' => 'ordern'
-                ],
-              'seo' => [
-                'class' => 'pistol88\seo\behaviors\SeoFields',
-            ],
+            self::SCENARIO_DEFAULT => self::OP_INSERT | self::OP_UPDATE,
         ];
     }
 
+    public function behaviors() {
+        return \yii\helpers\ArrayHelper::merge([
+                    'translate' => [
+                        'class' => TranslateBehavior::className(),
+                        'translationAttributes' => [
+                            'name',
+                            'text'
+                        ]
+                    ],
+                        ], parent::behaviors());
+    }
+
+    /*
+      public function behaviors() {
+      return \yii\helpers\ArrayHelper::merge([
+      // 'seo' => [
+      //    'class' => 'pistol88\seo\behaviors\SeoFields',
+      //],
+      'timestamp' => [
+      'class' => \yii\behaviors\TimestampBehavior::className(),
+      'createdAtAttribute' => 'date_create',
+      'updatedAtAttribute' => 'date_update',
+      //'value' => new \yii\db\Expression('NOW()'),
+
+      //'value' => new \yii\db\Expression('CURRENT_TIMESTAMP()'),
+      'value' => new \yii\db\Expression('UTC_TIMESTAMP()'),
+      'attributes' => [
+      \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
+      \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',
+      ],
+      // 'value' => function() { return date('U'); },// unix timestamp
+      ],
+      ],parent::behaviors());
+      }
+     */
 }
