@@ -15,7 +15,7 @@ class DefaultController extends AdminController {
             'dnd_sort' => [
                 'class' => SortableGridAction::className(),
                 'modelName' => Pages::className(),
-                ],
+            ],
         ];
     }
 
@@ -23,7 +23,8 @@ class DefaultController extends AdminController {
         $this->pageName = Yii::t('pages/default', 'MODULE_NAME');
         $this->buttons = [
             [
-                'label' => '<i class="fa fa-plus fa-fw"></i>' . Yii::t('pages/default', 'CREATE_BTN'),
+                'icon' => 'icon-add',
+                'label' => Yii::t('pages/default', 'CREATE_BTN'),
                 'url' => ['create'],
                 'options' => ['class' => 'btn btn-success']
             ]
@@ -38,21 +39,22 @@ class DefaultController extends AdminController {
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
                     'searchModel' => $searchModel,
-                ]);
+        ]);
     }
 
     public function actionUpdate($id = false) {
-        
-                if ($id === true) {
+
+        if ($id === true) {
             $model = Yii::$app->getModule("pages")->model("Pages");
         } else {
             $model = $this->findModel($id);
         }
-        
+
         $this->pageName = Yii::t('pages/default', 'CREATE_BTN');
         $this->buttons = [
             [
-                'label' => '<i class="icon-add"></i> ' . Yii::t('pages/default', 'CREATE_BTN'),
+                'icon' => 'icon-add',
+                'label' => Yii::t('pages/default', 'CREATE_BTN'),
                 'url' => ['create'],
                 'options' => ['class' => 'btn btn-success']
             ]
@@ -75,15 +77,14 @@ class DefaultController extends AdminController {
             Yii::$app->session->addFlash('success', \Yii::t('app', 'SUCCESS_CREATE'));
             // return $this->redirect(['index']);
             return Yii::$app->getResponse()->redirect(['/admin/pages']);
-        }else{
-            
-           // print_r($model->getErrors());
+        } else {
+
+            // print_r($model->getErrors());
         }
         echo $this->render('update', [
-                    'model' => $model,
-                ]);
+            'model' => $model,
+        ]);
     }
-
 
     protected function findModel($id) {
         $model = Yii::$app->getModule("pages")->model("Pages");
