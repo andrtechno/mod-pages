@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m170908_125100_init extends Migration {
+class m170908_125100_pages extends Migration {
 
     public function up() {
         $tableOptions = null;
