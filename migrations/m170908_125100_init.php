@@ -33,6 +33,7 @@ class m170908_125100_init extends Migration {
         $this->createIndex('switch', '{{%pages}}', 'switch', 0);
         $this->createIndex('ordern', '{{%pages}}', 'ordern', 0);
         $this->createIndex('user_id', '{{%pages}}', 'user_id', 0);
+        $this->createIndex('seo_alias', '{{%pages}}', 'seo_alias', 0);
 
         $this->createIndex('object_id', '{{%pages_translate}}', 'object_id', 0);
         $this->createIndex('language_id', '{{%pages_translate}}', 'language_id', 0);
