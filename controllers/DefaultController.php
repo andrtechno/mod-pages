@@ -11,18 +11,8 @@ class DefaultController extends WebController {
 
     public $model;
 
-    public function actionIndex() {
-        $all = Pages::find()->all();
-        $one = Pages::findOne(3);
-        echo Yii::$app->request->getQueryParam('language');
-        return $this->render('index', [
-                    'model' => $all,
-                    'one' => $one
-                ]);
-    }
 
     public function actionView($url) {
-
         $this->findModel($url);
         return $this->render('view', ['model' => $this->model]);
     }
