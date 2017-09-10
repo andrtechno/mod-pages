@@ -3,7 +3,6 @@
 namespace panix\mod\pages\models;
 
 use Yii;
-use panix\engine\WebModel;
 use app\models\User;
 use panix\engine\grid\sortable\SortableGridBehavior;
 use panix\engine\behaviors\TranslateBehavior;
@@ -15,7 +14,7 @@ use panix\mod\pages\models\PagesTranslate;
  * @property integer $id
  * @property string $name
  */
-class Pages extends WebModel {
+class Pages extends \panix\engine\db\ActiveRecord {
 
     /**
      * @inheritdoc
