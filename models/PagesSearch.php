@@ -4,7 +4,7 @@ namespace panix\mod\pages\models;
 
 use Yii;
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use panix\engine\data\ActiveDataProvider;
 use panix\mod\pages\models\Pages;
 
 /**
@@ -43,9 +43,6 @@ class PagesSearch extends Pages {
         $dataProvider = new ActiveDataProvider([
                     'query' => $query,
                     'sort'=> ['defaultOrder' => ['ordern'=>SORT_ASC]],
-                    'pagination' => [
-                        'pageSize' => Yii::$app->params['pagenum'],
-                        ],
                 ]);
 
         $this->load($params);

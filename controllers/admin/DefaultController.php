@@ -74,14 +74,15 @@ class DefaultController extends AdminController {
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->validate()) {
             $model->save();
-            Yii::$app->session->addFlash('success', \Yii::t('app', 'SUCCESS_CREATE'));
-            // return $this->redirect(['index']);
-            return Yii::$app->getResponse()->redirect(['/admin/pages']);
+            if(Yii::$app->request->post('redirect',1)){
+                Yii::$app->session->addFlash('success', \Yii::t('app', 'SUCCESS_CREATE'));
+                return Yii::$app->getResponse()->redirect(['/admin/pages']);
+            }
         } else {
 
             // print_r($model->getErrors());
         }
-        echo $this->render('update', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }

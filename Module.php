@@ -29,7 +29,7 @@ class Module extends WebModule {
 
     public function getInfo() {
         return [
-            'name' => Yii::t('pages/default', 'MODULE_NAME'),
+            'label' => Yii::t('pages/default', 'MODULE_NAME'),
             'author' => 'andrew.panix@gmail.com',
             'version' => '1.0',
             'icon' => 'icon-edit',

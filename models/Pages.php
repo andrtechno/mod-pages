@@ -4,7 +4,6 @@ namespace panix\mod\pages\models;
 
 use Yii;
 use app\models\User;
-use panix\engine\grid\sortable\SortableGridBehavior;
 use panix\engine\behaviors\TranslateBehavior;
 use panix\mod\pages\models\PagesTranslate;
 
@@ -15,7 +14,7 @@ use panix\mod\pages\models\PagesTranslate;
  * @property string $name
  */
 class Pages extends \panix\engine\db\ActiveRecord {
-
+    const route = '/admin/pages/default';
     /**
      * @inheritdoc
      */

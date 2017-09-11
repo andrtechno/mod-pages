@@ -3,7 +3,7 @@
     "description": "Module pages",
     "keywords": ["corner-cms", "module", "pages"],
     "homepage": "https://github.com/andrtechno/mod-pages",
-    "type": "module",
+    "type": "yii2-extension",
     "license": "BSD 3-Clause",
     "authors": [
         {
