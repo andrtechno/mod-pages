@@ -45,7 +45,7 @@ class DefaultController extends AdminController {
     public function actionUpdate($id = false) {
 
         if ($id === true) {
-            $model = Yii::$app->getModule("pages")->model("Pages");
+            $model = new Pages;
         } else {
             $model = $this->findModel($id);
         }
@@ -88,11 +88,11 @@ class DefaultController extends AdminController {
     }
 
     protected function findModel($id) {
-        $model = Yii::$app->getModule("pages")->model("Pages");
+        $model = new Pages;
         if (($model = $model::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
+            $this->error404();
         }
     }
 

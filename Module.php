@@ -7,24 +7,23 @@ use panix\engine\WebModule;
 
 class Module extends WebModule {
 
-
+    public $icon = 'edit';
     public $routes = [
-        'page/<url>' => 'pages/default/view',
+        'page/<url>' => 'pages/default/view'
     ];
 
-    public function getNav() {
-        return [
-            [
-                'label' => 'Станицы',
-                "url" => ['/admin/pages'],
-                'icon' => 'fa-edit'
-            ],
-            [
-                'label' => 'Настройки',
-                "url" => ['/admin/pages/settings'],
-                'icon' => 'fa-gear'
-            ]
-        ];
+    public function getAdminMenu() {
+        return array(
+            'modules' => array(
+                'items' => array(
+                    array(
+                        'label' => Yii::t('pages/default', 'MODULE_NAME'),
+                        'url' => ['/admin/pages'],
+                        'icon' => $this->icon,
+                    ),
+                ),
+            ),
+        );
     }
 
     public function getInfo() {
@@ -35,13 +34,6 @@ class Module extends WebModule {
             'icon' => 'icon-edit',
             'description' => Yii::t('pages/default', 'MODULE_DESC'),
             'url' => ['/admin/pages'],
-        ];
-    }
-
-    protected function getDefaultModelClasses() {
-        return [
-            'Pages' => 'panix\mod\pages\models\Pages',
-            'PagesSearch' => 'panix\mod\pages\models\PagesSearch',
         ];
     }
 
