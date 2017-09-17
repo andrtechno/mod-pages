@@ -6,14 +6,18 @@ use Yii;
 use panix\mod\pages\models\Pages;
 use panix\mod\pages\models\PagesSearch;
 use panix\engine\controllers\AdminController;
-use panix\engine\grid\sortable\SortableGridAction;
+
 
 class DefaultController extends AdminController {
 
     public function actions() {
         return [
-            'dnd_sort' => [
-                'class' => SortableGridAction::className(),
+            'sortable' => [
+                'class' => \panix\engine\grid\sortable\Action::className(),
+                'modelClass' => Pages::className(),
+            ],
+            'switch' => [
+                'class' => \panix\engine\actions\SwitchAction::className(),
                 'modelName' => Pages::className(),
             ],
         ];
@@ -74,7 +78,7 @@ class DefaultController extends AdminController {
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->validate()) {
             $model->save();
-            if(Yii::$app->request->post('redirect',1)){
+            if (Yii::$app->request->post('redirect', 1)) {
                 Yii::$app->session->addFlash('success', \Yii::t('app', 'SUCCESS_CREATE'));
                 return Yii::$app->getResponse()->redirect(['/admin/pages']);
             }
@@ -83,7 +87,7 @@ class DefaultController extends AdminController {
             // print_r($model->getErrors());
         }
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 

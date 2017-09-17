@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use panix\engine\data\ActiveDataProvider;
 use panix\mod\pages\models\Pages;
-
+use panix\mod\pages\models\PagesTranslate;
 /**
  * PagesSearch represents the model behind the search form about `app\modules\pages\models\Pages`.
  */
@@ -18,7 +18,7 @@ class PagesSearch extends Pages {
     public function rules() {
         return [
             [['id'], 'integer'],
-            [['name','seo_alias'], 'safe'],
+            [['name','seo_alias','date_create'], 'safe'],
         ];
     }
 
@@ -39,7 +39,8 @@ class PagesSearch extends Pages {
      */
     public function search($params) {
         $query = Pages::find();
-
+        $query->joinWith('translations');
+        $query->with('translations');
         $dataProvider = new ActiveDataProvider([
                     'query' => $query,
                     'sort'=> ['defaultOrder' => ['ordern'=>SORT_ASC]],
@@ -57,7 +58,8 @@ class PagesSearch extends Pages {
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', PagesTranslate::tableName().'.name', $this->name]);
+        $query->andFilterWhere(['like', 'DATE(date_create)', $this->date_create]);
 
         return $dataProvider;
     }

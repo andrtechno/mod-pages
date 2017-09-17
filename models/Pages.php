@@ -6,6 +6,7 @@ use Yii;
 use app\models\User;
 use panix\engine\behaviors\TranslateBehavior;
 use panix\mod\pages\models\PagesTranslate;
+use panix\mod\pages\models\PagesQuery;
 
 /**
  * This is the model class for table "pages".
@@ -14,7 +15,13 @@ use panix\mod\pages\models\PagesTranslate;
  * @property string $name
  */
 class Pages extends \panix\engine\db\ActiveRecord {
+
     const route = '/admin/pages/default';
+
+    public static function find() {
+        return new PagesQuery(get_called_class());
+    }
+
     /**
      * @inheritdoc
      */
@@ -74,27 +81,4 @@ class Pages extends \panix\engine\db\ActiveRecord {
                         ], parent::behaviors());
     }
 
-    /*
-      public function behaviors() {
-      return \yii\helpers\ArrayHelper::merge([
-      // 'seo' => [
-      //    'class' => 'pistol88\seo\behaviors\SeoFields',
-      //],
-      'timestamp' => [
-      'class' => \yii\behaviors\TimestampBehavior::className(),
-      'createdAtAttribute' => 'date_create',
-      'updatedAtAttribute' => 'date_update',
-      //'value' => new \yii\db\Expression('NOW()'),
-
-      //'value' => new \yii\db\Expression('CURRENT_TIMESTAMP()'),
-      'value' => new \yii\db\Expression('UTC_TIMESTAMP()'),
-      'attributes' => [
-      \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'date_create',
-      \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'date_update',
-      ],
-      // 'value' => function() { return date('U'); },// unix timestamp
-      ],
-      ],parent::behaviors());
-      }
-     */
 }
