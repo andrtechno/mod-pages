@@ -18,11 +18,23 @@ class DefaultController extends AdminController {
             ],
             'switch' => [
                 'class' => \panix\engine\actions\SwitchAction::className(),
-                'modelName' => Pages::className(),
+                'modelClass' => Pages::className(),
+            ],
+            
+            'delete' => [
+                'class' => \panix\engine\actions\DeleteAction::className(),
+                'modelClass' => Pages::className(),
             ],
         ];
     }
+ public function actionTest(){
+       $action=Yii::$app->request->post('action');
+       $selection=(array)Yii::$app->request->post('selection');
+       print_r($selection);die;
+       foreach($selection as $id){
 
+      }
+    }
     public function actionIndex() {
         $this->pageName = Yii::t('pages/default', 'MODULE_NAME');
         $this->buttons = [

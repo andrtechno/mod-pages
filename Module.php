@@ -26,6 +26,7 @@ class Module extends WebModule {
         );
     }
 
+
     public function getInfo() {
         return [
             'label' => Yii::t('pages/default', 'MODULE_NAME'),

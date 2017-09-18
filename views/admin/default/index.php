@@ -8,10 +8,15 @@ $sum = 1111;
 ?>
 
 
-<?php Pjax::begin([]); ?>
-<?=
-
-GridView::widget([
+<?php
+Pjax::begin([
+    'timeout' => 5000,
+    'id'=>'pjax-test',
+    'enablePushState' => false,
+    'clientOptions' => ['method' => 'POST']
+]);
+//echo Html::beginForm(['/admin/pages/default/test'],'post',['id'=>'test','name'=>'test']);
+echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -51,6 +56,6 @@ GridView::widget([
         ['class' => 'panix\engine\grid\columns\ActionColumn'],
     ],
 ]);
-?>
-<?php Pjax::end(); ?>
+        //echo Html::endForm();
+ Pjax::end(); ?>
 
