@@ -11,9 +11,9 @@ $sum = 1111;
 <?php
 Pjax::begin([
     'timeout' => 5000,
-    'id'=>'pjax-test',
-    'enablePushState' => false,
-    'clientOptions' => ['method' => 'POST']
+    'id'=>  'pjax-'.strtolower(basename($dataProvider->query->modelClass)),
+
+
 ]);
 //echo Html::beginForm(['/admin/pages/default/test'],'post',['id'=>'test','name'=>'test']);
 echo GridView::widget([
@@ -27,17 +27,13 @@ echo GridView::widget([
         return ['class' => 'sortable-column'];
     },
     'columns' => [
-        [
-            'class' => 'panix\engine\grid\columns\CheckboxColumn',
-            //'footer' => $sum
-        ],
+        ['class' => 'panix\engine\grid\columns\CheckboxColumn',],
         [
             'class' => \panix\engine\grid\sortable\Column::className(),
             'url' => ['/admin/pages/default/sortable']
         ],
         'id',
         'name',
-        // 'date_create:datetime',
         [
             'attribute' => 'date_create',
             'format' => 'raw',
@@ -50,12 +46,11 @@ echo GridView::widget([
             'contentOptions' => ['class' => 'text-center'],
             'value' => function($model) {
         return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
-        //return \panix\engine\CMS::date($model->date_create);
     }
         ],
         ['class' => 'panix\engine\grid\columns\ActionColumn'],
     ],
 ]);
-        //echo Html::endForm();
+
  Pjax::end(); ?>
 

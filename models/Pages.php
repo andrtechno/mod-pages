@@ -17,9 +17,31 @@ use panix\mod\pages\models\PagesQuery;
 class Pages extends \panix\engine\db\ActiveRecord {
 
     const route = '/admin/pages/default';
+    const MODULE_ID = 'pages';
 
     public static function find() {
         return new PagesQuery(get_called_class());
+    }
+
+    public function getGridColumns() {
+        return [
+            'id',
+            'name',
+            [
+                'attribute' => 'seo_alias',
+                'format' => 'html'
+            ],
+            [
+                'attribute' => 'text',
+                'format' => 'html'
+            ],
+            'DEFAULT_CONTROL' => [
+                'class' => 'panix\engine\grid\columns\ActionColumn',
+            ],
+            'DEFAULT_COLUMNS' => [
+                ['class' => 'panix\engine\grid\columns\CheckboxColumn'],
+            ],
+        ];
     }
 
     /**
@@ -43,17 +65,7 @@ class Pages extends \panix\engine\db\ActiveRecord {
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels() {
-        return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'seo_alias' => 'Seo alias',
-            'text' => 'Text',
-        ];
-    }
+
 
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
