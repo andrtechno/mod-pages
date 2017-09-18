@@ -28,12 +28,41 @@ class Pages extends \panix\engine\db\ActiveRecord {
             'id',
             'name',
             [
-                'attribute' => 'seo_alias',
-                'format' => 'html'
+                'attribute' => 'views',
+
+                'contentOptions' => ['class' => 'text-center'],
             ],
             [
                 'attribute' => 'text',
                 'format' => 'html'
+            ],
+            [
+                'attribute' => 'date_create',
+                'format' => 'raw',
+                'filter' => \yii\jui\DatePicker::widget([
+                    'model' => new PagesSearch(),
+                    'attribute' => 'date_create',
+                    'dateFormat' => 'yyyy-MM-dd',
+                    'options' => ['class' => 'form-control']
+                ]),
+                'contentOptions' => ['class' => 'text-center'],
+                'value' => function($model) {
+                    return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
+                }
+            ],
+                    [
+                'attribute' => 'date_update',
+                'format' => 'raw',
+                'filter' => \yii\jui\DatePicker::widget([
+                    'model' => new PagesSearch(),
+                    'attribute' => 'date_update',
+                    'dateFormat' => 'yyyy-MM-dd',
+                    'options' => ['class' => 'form-control']
+                ]),
+                'contentOptions' => ['class' => 'text-center'],
+                'value' => function($model) {
+                    return Yii::$app->formatter->asDatetime($model->date_update, 'php:d D Y H:i:s');
+                }
             ],
             'DEFAULT_CONTROL' => [
                 'class' => 'panix\engine\grid\columns\ActionColumn',
@@ -64,8 +93,6 @@ class Pages extends \panix\engine\db\ActiveRecord {
 //[['date_update','date_create'], 'filter','filter'=>'strtotime'],
         ];
     }
-
-
 
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);

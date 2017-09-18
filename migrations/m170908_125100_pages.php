@@ -16,6 +16,7 @@ class m170908_125100_pages extends Migration {
             'user_id' => $this->integer(),
             'date_create' => $this->timestamp()->defaultValue(null),
             'date_update' => $this->timestamp(),
+            'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1),
                 ], $tableOptions);
