@@ -93,7 +93,9 @@ class Pages extends \panix\engine\db\ActiveRecord {
 //[['date_update','date_create'], 'filter','filter'=>'strtotime'],
         ];
     }
-
+    public function renderText(){
+        return (Yii::$app->user->can('admin'))?$this->isText('text'):$this->pageBreak('text');
+    }
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }

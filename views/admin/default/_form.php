@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use panix\ext\tinymce\TinyMce;
 ?>
 
 
@@ -20,8 +21,12 @@ $form = ActiveForm::begin([
 
 <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 <?= $form->field($model, 'seo_alias')->textInput(['maxlength' => 255]) ?>
-<?= $form->field($model, 'text')->textArea(['rows' => 6]) ?>
 
+<?= $form->field($model, 'text')->widget(TinyMce::className(), [
+    'options' => ['rows' => 6],
+
+]);
+?>
 <div class="form-group text-center">
     <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'CREATE') : Yii::t('app', 'UPDATE'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>

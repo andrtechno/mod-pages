@@ -5,7 +5,7 @@ namespace panix\mod\pages\controllers;
 use Yii;
 use panix\engine\controllers\WebController;
 use panix\mod\pages\models\Pages;
-use yii\web\NotFoundHttpException;
+
 
 class DefaultController extends WebController {
 
@@ -18,11 +18,11 @@ class DefaultController extends WebController {
     }
 
     protected function findModel($url) {
-        $model = Yii::$app->getModule("pages")->model("Pages");
+        $model = new Pages;
         if (($this->model = $model::find()->where(['seo_alias' => $url])->one()) !== null) {
             return $this->model;
         } else {
-            throw new NotFoundHttpException('page not found');
+            $this->error404();
         }
     }
 
