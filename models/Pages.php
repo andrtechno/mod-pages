@@ -29,7 +29,6 @@ class Pages extends \panix\engine\db\ActiveRecord {
             'name',
             [
                 'attribute' => 'views',
-
                 'contentOptions' => ['class' => 'text-center'],
             ],
             [
@@ -47,10 +46,10 @@ class Pages extends \panix\engine\db\ActiveRecord {
                 ]),
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function($model) {
-                    return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
-                }
+            return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
+        }
             ],
-                    [
+            [
                 'attribute' => 'date_update',
                 'format' => 'raw',
                 'filter' => \yii\jui\DatePicker::widget([
@@ -61,8 +60,8 @@ class Pages extends \panix\engine\db\ActiveRecord {
                 ]),
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function($model) {
-                    return Yii::$app->formatter->asDatetime($model->date_update, 'php:d D Y H:i:s');
-                }
+            return Yii::$app->formatter->asDatetime($model->date_update, 'php:d D Y H:i:s');
+        }
             ],
             'DEFAULT_CONTROL' => [
                 'class' => 'panix\engine\grid\columns\ActionColumn',
@@ -93,9 +92,11 @@ class Pages extends \panix\engine\db\ActiveRecord {
 //[['date_update','date_create'], 'filter','filter'=>'strtotime'],
         ];
     }
-    public function renderText(){
-        return (Yii::$app->user->can('admin'))?$this->isText('text'):$this->pageBreak('text');
+
+    public function renderText() {
+        return (Yii::$app->user->can('admin')) ? $this->isText('text') : $this->pageBreak('text');
     }
+
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
@@ -118,6 +119,11 @@ class Pages extends \panix\engine\db\ActiveRecord {
                             'name',
                             'text'
                         ]
+                    ],
+                    'commentBehavior' => [
+                        'class' => \panix\mod\comments\components\CommentBehavior::className(),
+                        'model' => 'panix\mod\pages\Pages',
+                        'owner_title' => 'name',
                     ],
                         ], parent::behaviors());
     }
