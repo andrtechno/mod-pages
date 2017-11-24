@@ -90,7 +90,12 @@ class Pages extends \panix\engine\db\ActiveRecord {
         return [
             [['name', 'text', 'seo_alias'], 'required'],
             [['name', 'seo_alias'], 'string', 'max' => 255],
+            [['name', 'seo_alias'], 'trim'],
             ['seo_alias', '\panix\engine\validators\UrlValidator','attributeCompare'=>'name'],
+            ['seo_alias', 'match',
+                'pattern' => '/^([a-z0-9-])+$/i',
+                'message' => Yii::t('app','PATTERN_URL')
+            ],
             [['date_update', 'date_create'], 'safe'],
                 //[['date_update'], 'date', 'format' => 'php:U']
                 /// [['date_update'], 'date','format'=>'php:U', 'timestampAttribute' => 'date_update','skipOnEmpty'=>  true],
