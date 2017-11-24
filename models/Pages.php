@@ -19,6 +19,10 @@ class Pages extends \panix\engine\db\ActiveRecord {
     const route = '/admin/pages/default';
     const MODULE_ID = 'pages';
 
+    //public $disallow_delete = [32, 33];
+    //public $disallow_update = [32];
+    //public $disallow_switch = [32];
+
     public static function find() {
         return new PagesQuery(get_called_class());
     }
@@ -46,8 +50,8 @@ class Pages extends \panix\engine\db\ActiveRecord {
                 ]),
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function($model) {
-            return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
-        }
+                    return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
+                }
             ],
             [
                 'attribute' => 'date_update',
@@ -60,8 +64,8 @@ class Pages extends \panix\engine\db\ActiveRecord {
                 ]),
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function($model) {
-            return Yii::$app->formatter->asDatetime($model->date_update, 'php:d D Y H:i:s');
-        }
+                    return Yii::$app->formatter->asDatetime($model->date_update, 'php:d D Y H:i:s');
+                }
             ],
             'DEFAULT_CONTROL' => [
                 'class' => 'panix\engine\grid\columns\ActionColumn',
@@ -86,6 +90,7 @@ class Pages extends \panix\engine\db\ActiveRecord {
         return [
             [['name', 'text', 'seo_alias'], 'required'],
             [['name', 'seo_alias'], 'string', 'max' => 255],
+            ['seo_alias', '\panix\engine\validators\UrlValidator','attributeCompare'=>'name'],
             [['date_update', 'date_create'], 'safe'],
                 //[['date_update'], 'date', 'format' => 'php:U']
                 /// [['date_update'], 'date','format'=>'php:U', 'timestampAttribute' => 'date_update','skipOnEmpty'=>  true],
@@ -94,6 +99,9 @@ class Pages extends \panix\engine\db\ActiveRecord {
     }
 
     public function renderText() {
+        if (Yii::$app->user->can('admin')) {
+            \panix\ext\tinymce\TinyMceInline::widget();
+        }
         return (Yii::$app->user->can('admin')) ? $this->isText('text') : $this->pageBreak('text');
     }
 
