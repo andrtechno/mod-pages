@@ -13,17 +13,17 @@ class Module extends WebModule {
     ];
 
     public function getAdminMenu() {
-        return array(
-            'modules' => array(
-                'items' => array(
-                    array(
+        return [
+            'modules' => [
+                'items' => [
+                    [
                         'label' => Yii::t('pages/default', 'MODULE_NAME'),
                         'url' => ['/admin/pages'],
                         'icon' => $this->icon,
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
     }
 
 
