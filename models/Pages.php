@@ -111,11 +111,11 @@ class Pages extends \panix\engine\db\ActiveRecord {
     }
 
     public function getUser() {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public function getTranslations() {
-        return $this->hasMany(PagesTranslate::className(), ['object_id' => 'id']);
+        return $this->hasMany(PagesTranslate::class, ['object_id' => 'id']);
     }
 
     public function transactions() {
@@ -127,14 +127,14 @@ class Pages extends \panix\engine\db\ActiveRecord {
     public function behaviors() {
         return \yii\helpers\ArrayHelper::merge([
                     'translate' => [
-                        'class' => TranslateBehavior::className(),
+                        'class' => TranslateBehavior::class,
                         'translationAttributes' => [
                             'name',
                             'text'
                         ]
                     ],
                     'commentBehavior' => [
-                        'class' => \panix\mod\comments\components\CommentBehavior::className(),
+                        'class' => \panix\mod\comments\components\CommentBehavior::class,
                         'model' => 'panix\mod\pages\Pages',
                         'owner_title' => 'name',
                     ],

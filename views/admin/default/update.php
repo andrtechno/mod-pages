@@ -19,7 +19,7 @@ use panix\ext\tinymce\TinyMce;
         <?= $form->field($model, 'seo_alias')->textInput(['maxlength' => 255]) ?>
 
         <?=
-        $form->field($model, 'text')->widget(TinyMce::className(), [
+        $form->field($model, 'text')->widget(TinyMce::class, [
             'options' => ['rows' => 6],
         ]);
         ?>
