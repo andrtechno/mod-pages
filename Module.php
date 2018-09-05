@@ -5,14 +5,16 @@ namespace panix\mod\pages;
 use Yii;
 use panix\engine\WebModule;
 
-class Module extends WebModule {
+class Module extends WebModule
+{
 
     public $icon = 'edit';
     public $routes = [
         'page/<url>' => 'pages/default/view'
     ];
 
-    public function getAdminMenu() {
+    public function getAdminMenu()
+    {
         return [
             'modules' => [
                 'items' => [
@@ -27,12 +29,13 @@ class Module extends WebModule {
     }
 
 
-    public function getInfo() {
+    public function getInfo()
+    {
         return [
             'label' => Yii::t('pages/default', 'MODULE_NAME'),
-            'author' => 'andrew.panix@gmail.com',
+            'author' => 'dev@pixelion.com.ua',
             'version' => '1.0',
-            'icon' => 'icon-edit',
+            'icon' => $this->icon,
             'description' => Yii::t('pages/default', 'MODULE_DESC'),
             'url' => ['/admin/pages'],
         ];
