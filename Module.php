@@ -10,7 +10,10 @@ class Module extends WebModule
 
     public $icon = 'edit';
     public $routes = [
-        'page/<url>' => 'pages/default/view'
+        'page/bot' => 'pages/default/bot',
+
+        // 'page/<url>' => 'pages/default/view',
+        'page/test/vb' => 'pages/default/viberBot',
     ];
 
     public function getAdminMenu()

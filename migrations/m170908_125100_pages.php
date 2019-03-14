@@ -14,11 +14,11 @@ class m170908_125100_pages extends Migration {
             'id' => $this->primaryKey(),
             'seo_alias' => $this->string(255)->notNull(),
             'user_id' => $this->integer(),
-            'date_create' => $this->timestamp()->defaultValue(null),
-            'date_update' => $this->timestamp(),
             'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1),
+            'created_at' => $this->integer(11)->null(),
+            'updated_at' => $this->integer(11)->null(),
                 ], $tableOptions);
 
 
@@ -31,13 +31,13 @@ class m170908_125100_pages extends Migration {
                 ], $tableOptions);
 
 
-        $this->createIndex('switch', '{{%pages}}', 'switch', 0);
-        $this->createIndex('ordern', '{{%pages}}', 'ordern', 0);
-        $this->createIndex('user_id', '{{%pages}}', 'user_id', 0);
-        $this->createIndex('seo_alias', '{{%pages}}', 'seo_alias', 0);
+        $this->createIndex('switch', '{{%pages}}', 'switch');
+        $this->createIndex('ordern', '{{%pages}}', 'ordern');
+        $this->createIndex('user_id', '{{%pages}}', 'user_id');
+        $this->createIndex('seo_alias', '{{%pages}}', 'seo_alias');
 
-        $this->createIndex('object_id', '{{%pages_translate}}', 'object_id', 0);
-        $this->createIndex('language_id', '{{%pages_translate}}', 'language_id', 0);
+        $this->createIndex('object_id', '{{%pages_translate}}', 'object_id');
+        $this->createIndex('language_id', '{{%pages_translate}}', 'language_id');
 
         if ($this->db->driverName != "sqlite") {
             $this->addForeignKey('{{%fk_pages_translate}}', '{{%pages_translate}}', 'object_id', '{{%pages}}', 'id', "CASCADE", "NO ACTION");
