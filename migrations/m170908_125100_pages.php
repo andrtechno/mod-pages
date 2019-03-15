@@ -1,34 +1,41 @@
 <?php
-
+/**
+ * Generation migrate by PIXELION CMS
+ * @author PIXELION CMS development team <dev@pixelion.com.ua>
+ *
+ * Class m170908_125100_pages
+ */
 use yii\db\Migration;
 
-class m170908_125100_pages extends Migration {
+class m170908_125100_pages extends Migration
+{
 
-    public function up() {
+    public function up()
+    {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
         $this->createTable('{{%pages}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->unsigned(),
             'seo_alias' => $this->string(255)->notNull(),
-            'user_id' => $this->integer(),
+            'user_id' => $this->integer()->unsigned(),
             'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1),
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null(),
-                ], $tableOptions);
+        ], $tableOptions);
 
 
         $this->createTable('{{%pages_translate}}', [
-            'id' => $this->primaryKey(),
-            'object_id' => $this->integer(),
-            'language_id' => $this->string(2),
+            'id' => $this->primaryKey()->unsigned(),
+            'object_id' => $this->integer()->unsigned(),
+            'language_id' => $this->tinyInteger()->unsigned(),
             'name' => $this->string(255),
             'text' => $this->text(),
-                ], $tableOptions);
+        ], $tableOptions);
 
 
         $this->createIndex('switch', '{{%pages}}', 'switch');
@@ -57,7 +64,8 @@ class m170908_125100_pages extends Migration {
         ]);
     }
 
-    public function down() {
+    public function down()
+    {
         if ($this->db->driverName != "sqlite") {
             $this->dropForeignKey('{{%fk_pages_translate}}', '{{%pages_translate}}');
         }
