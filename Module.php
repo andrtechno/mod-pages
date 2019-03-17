@@ -23,7 +23,7 @@ class Module extends WebModule
                 'items' => [
                     [
                         'label' => Yii::t('pages/default', 'MODULE_NAME'),
-                        'url' => ['/admin/pages'],
+                        'url' => ['/pages'],
                         'icon' => $this->icon,
                     ],
                 ],
@@ -40,7 +40,7 @@ class Module extends WebModule
             'version' => '1.0',
             'icon' => $this->icon,
             'description' => Yii::t('pages/default', 'MODULE_DESC'),
-            'url' => ['/admin/pages'],
+            'url' => ['/pages'],
         ];
     }
 
