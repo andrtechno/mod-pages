@@ -2,9 +2,10 @@
 
 namespace panix\mod\pages\models;
 
-use panix\engine\traits\DefaultQueryTrait;
+use yii\db\ActiveQuery;
+use panix\engine\traits\query\DefaultQueryTrait;
 
-class PagesQuery extends \yii\db\ActiveQuery {
+class PagesQuery extends ActiveQuery {
 
     use DefaultQueryTrait;
 }
