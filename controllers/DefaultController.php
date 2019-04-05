@@ -16,8 +16,22 @@ use yii\filters\VerbFilter;
 class DefaultController extends WebController
 {
 
-    public function actionView2($url)
+    public function actionView($url)
     {
+		
+		
+        $layouts = [
+            "@theme/views/pages/default/html",
+            "@pages/views/default/html",
+        ];
+
+        foreach ($layouts as $layout) {
+            if (file_exists(Yii::getAlias($layout) . DIRECTORY_SEPARATOR . $url . '.php')) {
+                return $this->render($layout . '/' . $url, []);
+            }
+        }
+
+		
         $model = Pages::find()->where(['seo_alias' => $url])->one();
         if (!$model) {
             $this->error404();
