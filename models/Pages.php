@@ -3,10 +3,8 @@
 namespace panix\mod\pages\models;
 
 use Yii;
-use app\models\User;
 use panix\engine\behaviors\TranslateBehavior;
-use panix\mod\pages\models\PagesTranslate;
-use panix\mod\pages\models\PagesQuery;
+use panix\engine\db\ActiveRecord;
 
 /**
  * This is the model class for table "pages".
@@ -14,11 +12,11 @@ use panix\mod\pages\models\PagesQuery;
  * @property integer $id
  * @property string $name
  */
-class Pages extends \panix\engine\db\ActiveRecord {
+class Pages extends ActiveRecord {
 
     const route = '/admin/pages/default';
     const MODULE_ID = 'pages';
-
+    public $translationClass = PagesTranslate::class;
     //public $disallow_delete = [32, 33];
     //public $disallow_update = [32];
     //public $disallow_switch = [32];
@@ -29,8 +27,14 @@ class Pages extends \panix\engine\db\ActiveRecord {
 
     public function getGridColumns() {
         return [
-            'id',
-            'name',
+            [
+                'attribute' => 'id',
+                'contentOptions' => ['class' => 'text-center'],
+            ],
+            [
+                'attribute' => 'name',
+                'contentOptions' => ['class' => 'text-left'],
+            ],
             [
                 'attribute' => 'views',
                 'contentOptions' => ['class' => 'text-center'],
@@ -111,18 +115,17 @@ class Pages extends \panix\engine\db\ActiveRecord {
     }
 
     public function getUser() {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(\panix\mod\user\models\User::class, ['id' => 'user_id']);
     }
 
     public function getTranslations() {
-        return $this->hasMany(PagesTranslate::class, ['object_id' => 'id']);
+        return $this->hasMany($this->translationClass, ['object_id' => 'id']);
+    }
+    public function getTranslation()
+    {
+        return $this->hasOne($this->translationClass, ['object_id' => 'id']);
     }
 
-    public function transactions() {
-        return [
-            self::SCENARIO_DEFAULT => self::OP_INSERT | self::OP_UPDATE,
-        ];
-    }
 
     public function behaviors() {
         return \yii\helpers\ArrayHelper::merge([

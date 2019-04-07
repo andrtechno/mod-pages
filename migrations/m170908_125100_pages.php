@@ -23,8 +23,8 @@ class m170908_125100_pages extends Migration
 
         $this->createTable(Pages::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
-            'seo_alias' => $this->string(255)->notNull(),
             'user_id' => $this->integer()->unsigned(),
+            'seo_alias' => $this->string(255)->notNull(),
             'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1),

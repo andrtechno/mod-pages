@@ -39,8 +39,8 @@ class PagesSearch extends Pages {
      */
     public function search($params) {
         $query = Pages::find();
-        $query->joinWith('translations');
-        $query->with('translations');
+        $query->joinWith('translations translations');
+
         $dataProvider = new ActiveDataProvider([
                     'query' => $query,
                     'sort'=> self::getSort(),
@@ -58,7 +58,7 @@ class PagesSearch extends Pages {
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', PagesTranslate::tableName().'.name', $this->name]);
+        $query->andFilterWhere(['like', 'translations.name', $this->name]);
         $query->andFilterWhere(['like', 'DATE(date_create)', $this->date_create]);
         $query->andFilterWhere(['like', 'DATE(date_update)', $this->date_update]);
         $query->andFilterWhere(['like', 'views', $this->views]);

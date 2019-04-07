@@ -2,9 +2,13 @@
 
 namespace panix\mod\pages\models;
 
-class PagesTranslate extends \yii\db\ActiveRecord {
+use yii\db\ActiveRecord;
 
-    public static function tableName() {
+class PagesTranslate extends ActiveRecord
+{
+
+    public static function tableName()
+    {
         return '{{%pages_translate}}';
     }
 
