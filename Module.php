@@ -4,17 +4,25 @@ namespace panix\mod\pages;
 
 use Yii;
 use panix\engine\WebModule;
+use yii\base\BootstrapInterface;
 
-class Module extends WebModule
+class Module extends WebModule implements BootstrapInterface
 {
 
     public $icon = 'edit';
-    public $routes = [
-        'page/bot' => 'pages/default/bot',
 
-        // 'page/<url>' => 'pages/default/view',
-        'page/test/vb' => 'pages/default/viberBot',
-    ];
+    public function bootstrap($app)
+    {
+        $app->urlManager->addRules(
+            [
+                'page/<url:[0-9a-zA-Z_\-]+>/page/<page:\d+>/per-page/<per-page:\d+>' => 'pages/default/view',
+                'page/<url:[0-9a-zA-Z_\-]+>/page/<page:\d+>' => 'pages/default/view',
+                'page/<url:[0-9a-zA-Z_\-]+>' => 'pages/default/view',
+
+            ],
+            true
+        );
+    }
 
     public function getAdminMenu()
     {
