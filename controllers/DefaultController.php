@@ -12,7 +12,7 @@ class DefaultController extends WebController
     public function actionView($url)
     {
         $layouts = [
-            "@theme/views/pages/default/html",
+            "@theme/modules/pages/views/default/html",
             "@pages/views/default/html",
         ];
 
