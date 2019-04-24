@@ -8,9 +8,11 @@ use panix\mod\pages\models\PagesSearch;
 use panix\engine\controllers\AdminController;
 
 
-class DefaultController extends AdminController {
+class DefaultController extends AdminController
+{
 
-    public function actions() {
+    public function actions()
+    {
         return [
             'sortable' => [
                 'class' => \panix\engine\grid\sortable\Action::class,
@@ -20,22 +22,27 @@ class DefaultController extends AdminController {
                 'class' => \panix\engine\actions\SwitchAction::class,
                 'modelClass' => Pages::class,
             ],
-            
+
             'delete' => [
                 'class' => \panix\engine\actions\DeleteAction::class,
                 'modelClass' => Pages::class,
             ],
         ];
     }
- public function actionTest(){
-       $action=Yii::$app->request->post('action');
-       $selection=(array)Yii::$app->request->post('selection');
-       print_r($selection);die;
-       foreach($selection as $id){
 
-      }
+    public function actionTest()
+    {
+        $action = Yii::$app->request->post('action');
+        $selection = (array)Yii::$app->request->post('selection');
+        print_r($selection);
+        die;
+        foreach ($selection as $id) {
+
+        }
     }
-    public function actionIndex() {
+
+    public function actionIndex()
+    {
         $this->pageName = Yii::t('pages/default', 'MODULE_NAME');
         $this->buttons = [
             [
@@ -53,19 +60,15 @@ class DefaultController extends AdminController {
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('index', [
-                    'dataProvider' => $dataProvider,
-                    'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
-    public function actionUpdate($id = false) {
+    public function actionUpdate($id = false)
+    {
 
-        if ($id === true) {
-            $model = new Pages;
-        } else {
-            $model = $this->findModel($id);
-        }
-
+        $model = Pages::findModel($id);
         $this->pageName = Yii::t('pages/default', 'CREATE_BTN');
         $this->buttons = [
             [
@@ -82,10 +85,6 @@ class DefaultController extends AdminController {
         $this->breadcrumbs[] = $this->pageName;
 
 
-
-
-
-
         //$model->setScenario("admin");
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->validate()) {
@@ -99,17 +98,7 @@ class DefaultController extends AdminController {
             // print_r($model->getErrors());
         }
         return $this->render('update', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
-
-    protected function findModel($id) {
-        $model = new Pages;
-        if (($model = $model::findOne($id)) !== null) {
-            return $model;
-        } else {
-            $this->error404();
-        }
-    }
-
 }
