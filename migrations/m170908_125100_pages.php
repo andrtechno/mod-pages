@@ -29,7 +29,7 @@ class m170908_125100_pages extends Migration
             'ordern' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1),
             'created_at' => $this->integer(11)->null(),
-            'updated_at' => $this->integer(11)->null(),
+            'updated_at' => $this->integer(11)->null()
         ], $tableOptions);
 
 
@@ -38,7 +38,7 @@ class m170908_125100_pages extends Migration
             'object_id' => $this->integer()->unsigned(),
             'language_id' => $this->tinyInteger()->unsigned(),
             'name' => $this->string(255),
-            'text' => $this->text(),
+            'text' => $this->text()
         ], $tableOptions);
 
 
