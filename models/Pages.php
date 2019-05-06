@@ -92,11 +92,11 @@ class Pages extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'text', 'seo_alias'], 'required'],
-            [['name', 'seo_alias'], 'string', 'max' => 255],
-            [['name', 'seo_alias'], 'trim'],
-            ['seo_alias', '\panix\engine\validators\UrlValidator','attributeCompare'=>'name'],
-            ['seo_alias', 'match',
+            [['name', 'text', 'slug'], 'required'],
+            [['name', 'slug'], 'string', 'max' => 255],
+            [['name', 'slug'], 'trim'],
+            ['slug', '\panix\engine\validators\UrlValidator','attributeCompare'=>'name'],
+            ['slug', 'match',
                 'pattern' => '/^([a-z0-9-])+$/i',
                 'message' => Yii::t('app','PATTERN_URL')
             ],

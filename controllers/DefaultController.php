@@ -23,7 +23,7 @@ class DefaultController extends WebController
         }
 
 
-        $model = Pages::find()->where(['seo_alias' => $url])->one();
+        $model = Pages::find()->where(['slug' => $url])->one();
         if (!$model) {
             $this->error404();
         }

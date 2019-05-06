@@ -24,7 +24,7 @@ class m170908_125100_pages extends Migration
         $this->createTable(Pages::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'user_id' => $this->integer()->unsigned(),
-            'seo_alias' => $this->string(255)->notNull(),
+            'slug' => $this->string(255)->notNull(),
             'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1),
@@ -45,7 +45,7 @@ class m170908_125100_pages extends Migration
         $this->createIndex('switch', Pages::tableName(), 'switch');
         $this->createIndex('ordern', Pages::tableName(), 'ordern');
         $this->createIndex('user_id', Pages::tableName(), 'user_id');
-        $this->createIndex('seo_alias', Pages::tableName(), 'seo_alias');
+        $this->createIndex('slug', Pages::tableName(), 'slug');
 
         $this->createIndex('object_id', PagesTranslate::tableName(), 'object_id');
         $this->createIndex('language_id', PagesTranslate::tableName(), 'language_id');
@@ -54,7 +54,7 @@ class m170908_125100_pages extends Migration
             $this->addForeignKey('{{%fk_pages_translate}}', PagesTranslate::tableName(), 'object_id', Pages::tableName(), 'id', "CASCADE", "NO ACTION");
         }
 
-        $columns = ['seo_alias', 'user_id', 'ordern', 'created_at'];
+        $columns = ['slug', 'user_id', 'ordern', 'created_at'];
         $this->batchInsert(Pages::tableName(), $columns, [
             ['about', 1, 1, date('Y-m-d H:i:s')],
             ['mypage', 1, 2, date('Y-m-d H:i:s')],
