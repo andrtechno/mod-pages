@@ -138,7 +138,6 @@ class Pages extends ActiveRecord {
                     ],
                     'commentBehavior' => [
                         'class' => \panix\mod\comments\components\CommentBehavior::class,
-                        'model' => 'panix\mod\pages\Pages',
                         'owner_title' => 'name',
                     ],
                         ], parent::behaviors());
