@@ -22,23 +22,11 @@ class DefaultController extends AdminController
                 'class' => \panix\engine\actions\SwitchAction::class,
                 'modelClass' => Pages::class,
             ],
-
             'delete' => [
                 'class' => \panix\engine\actions\DeleteAction::class,
                 'modelClass' => Pages::class,
             ],
         ];
-    }
-
-    public function actionTest()
-    {
-        $action = Yii::$app->request->post('action');
-        $selection = (array)Yii::$app->request->post('selection');
-        print_r($selection);
-        die;
-        foreach ($selection as $id) {
-
-        }
     }
 
     public function actionIndex()
@@ -90,7 +78,7 @@ class DefaultController extends AdminController
         if ($model->load($post) && $model->validate()) {
             $model->save();
             if (Yii::$app->request->post('redirect', 1)) {
-                Yii::$app->session->addFlash('success', \Yii::t('app', 'SUCCESS_CREATE'));
+                Yii::$app->session->setFlash('success', \Yii::t('app', 'SUCCESS_UPDATE'));
                 return Yii::$app->getResponse()->redirect(['/admin/pages']);
             }
         } else {
