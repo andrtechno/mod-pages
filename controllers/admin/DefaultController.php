@@ -34,7 +34,7 @@ class DefaultController extends AdminController
         $this->pageName = Yii::t('pages/default', 'MODULE_NAME');
         $this->buttons = [
             [
-                'icon' => 'icon-add',
+                'icon' => 'add',
                 'label' => Yii::t('pages/default', 'CREATE_BTN'),
                 'url' => ['create'],
                 'options' => ['class' => 'btn btn-success']
@@ -60,7 +60,7 @@ class DefaultController extends AdminController
         $this->pageName = Yii::t('pages/default', 'CREATE_BTN');
         $this->buttons = [
             [
-                'icon' => 'icon-add',
+                'icon' => 'add',
                 'label' => Yii::t('pages/default', 'CREATE_BTN'),
                 'url' => ['create'],
                 'options' => ['class' => 'btn btn-success']
