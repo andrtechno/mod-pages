@@ -11,6 +11,7 @@ use panix\engine\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $name
+ * @property string $text
  */
 class Pages extends ActiveRecord
 {
@@ -125,27 +126,9 @@ class Pages extends ActiveRecord
         return $this->hasOne(\panix\mod\user\models\User::class, ['id' => 'user_id']);
     }
 
-    public function getTranslations()
-    {
-        return $this->hasMany($this->translationClass, ['object_id' => 'id']);
-    }
-
-    public function getTranslation()
-    {
-        return $this->hasOne($this->translationClass, ['object_id' => 'id']);
-    }
-
-
     public function behaviors()
     {
         return \yii\helpers\ArrayHelper::merge([
-            'translate' => [
-                'class' => TranslateBehavior::class,
-                'translationAttributes' => [
-                    'name',
-                    'text'
-                ]
-            ],
             'commentBehavior' => [
                 'class' => \panix\mod\comments\components\CommentBehavior::class,
                 'owner_title' => 'name',
