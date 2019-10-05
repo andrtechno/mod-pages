@@ -26,7 +26,7 @@ class m170908_125100_pages extends Migration
             'user_id' => $this->integer()->unsigned(),
             'slug' => $this->string(255)->notNull(),
             'views' => $this->integer()->defaultValue(0),
-            'ordern' => $this->integer(),
+            'ordern' => $this->integer()->unsigned(),
             'switch' => $this->boolean()->defaultValue(1),
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null()
