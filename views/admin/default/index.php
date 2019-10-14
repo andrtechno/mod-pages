@@ -4,13 +4,7 @@ use yii\helpers\Html;
 use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
 
-$sum = 1111;
-?>
-
-
-<?php
 Pjax::begin([
-    'timeout' => 5000,
     'id'=>  'pjax-'.strtolower(basename($dataProvider->query->modelClass)),
 ]);
 //echo Html::beginForm(['/admin/pages/default/test'],'post',['id'=>'test','name'=>'test']);
@@ -24,5 +18,5 @@ echo GridView::widget([
     'rowOptions' => ['class' => 'sortable-column']
 ]);
 
- Pjax::end(); ?>
+Pjax::end();
 
