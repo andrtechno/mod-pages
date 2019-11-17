@@ -31,7 +31,7 @@ class Pages extends ActiveRecord
     public function getGridColumns()
     {
         return [
-            [
+            'id'=>[
                 'attribute' => 'id',
                 'contentOptions' => ['class' => 'text-center'],
             ],
