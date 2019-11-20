@@ -18,7 +18,7 @@ class PagesSearch extends Pages {
     public function rules() {
         return [
             [['id','views'], 'integer'],
-            [['name','slug','date_create'], 'safe'],
+            [['name','slug','created_at'], 'safe'],
         ];
     }
 
@@ -59,8 +59,8 @@ class PagesSearch extends Pages {
         ]);
 
         $query->andFilterWhere(['like', 'translations.name', $this->name]);
-        $query->andFilterWhere(['like', 'DATE(date_create)', $this->date_create]);
-        $query->andFilterWhere(['like', 'DATE(date_update)', $this->date_update]);
+        $query->andFilterWhere(['like', 'DATE(created_at)', $this->created_at]);
+        $query->andFilterWhere(['like', 'DATE(created_at)', $this->created_at]);
         $query->andFilterWhere(['like', 'views', $this->views]);
 
         return $dataProvider;
@@ -68,8 +68,8 @@ class PagesSearch extends Pages {
     public static function getSort() {
         $sort = new \yii\data\Sort([
             'attributes' => [
-                'date_create',
-                'date_update',
+                'created_at',
+                'updated_at',
                 'views',
                 'name' => [
                     'asc' => ['name' => SORT_ASC],

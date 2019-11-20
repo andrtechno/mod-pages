@@ -15,9 +15,9 @@ class Module extends WebModule implements BootstrapInterface
     {
         $app->urlManager->addRules(
             [
-                'page/<url:[0-9a-zA-Z_\-]+>/page/<page:\d+>/per-page/<per-page:\d+>' => 'pages/default/view',
-                'page/<url:[0-9a-zA-Z_\-]+>/page/<page:\d+>' => 'pages/default/view',
-                'page/<url:[0-9a-zA-Z_\-]+>' => 'pages/default/view',
+                'page/<slug:[0-9a-zA-Z_\-]+>/page/<page:\d+>/per-page/<per-page:\d+>' => 'pages/default/view',
+                'page/<slug:[0-9a-zA-Z_\-]+>/page/<page:\d+>' => 'pages/default/view',
+                'page/<slug:[0-9a-zA-Z_\-]+>' => 'pages/default/view',
 
             ],
             true

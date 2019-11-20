@@ -19,9 +19,7 @@ class Pages extends ActiveRecord
     const route = '/admin/pages/default';
     const MODULE_ID = 'pages';
     public $translationClass = PagesTranslate::class;
-    //public $disallow_delete = [32, 33];
-    //public $disallow_update = [32];
-    //public $disallow_switch = [32];
+
 
     public static function find()
     {
@@ -48,31 +46,31 @@ class Pages extends ActiveRecord
                 'format' => 'html'
             ],
             [
-                'attribute' => 'date_create',
+                'attribute' => 'created_at',
                 'format' => 'raw',
                 'filter' => \yii\jui\DatePicker::widget([
                     'model' => new PagesSearch(),
-                    'attribute' => 'date_create',
+                    'attribute' => 'created_at',
                     'dateFormat' => 'yyyy-MM-dd',
                     'options' => ['class' => 'form-control']
                 ]),
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model) {
-                    return Yii::$app->formatter->asDatetime($model->date_create, 'php:d D Y H:i:s');
+                    return Yii::$app->formatter->asDatetime($model->created_at, 'php:d D Y H:i:s');
                 }
             ],
             [
-                'attribute' => 'date_update',
+                'attribute' => 'updated_at',
                 'format' => 'raw',
                 'filter' => \yii\jui\DatePicker::widget([
                     'model' => new PagesSearch(),
-                    'attribute' => 'date_update',
+                    'attribute' => 'updated_at',
                     'dateFormat' => 'yyyy-MM-dd',
                     'options' => ['class' => 'form-control']
                 ]),
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model) {
-                    return Yii::$app->formatter->asDatetime($model->date_update, 'php:d D Y H:i:s');
+                    return Yii::$app->formatter->asDatetime($model->updated_at, 'php:d D Y H:i:s');
                 }
             ],
             'DEFAULT_CONTROL' => [
@@ -106,13 +104,17 @@ class Pages extends ActiveRecord
                 'pattern' => '/^([a-z0-9-])+$/i',
                 'message' => Yii::t('app', 'PATTERN_URL')
             ],
-            [['date_update', 'date_create'], 'safe'],
+            [['updated_at', 'created_at'], 'safe'],
             //[['date_update'], 'date', 'format' => 'php:U']
             /// [['date_update'], 'date','format'=>'php:U', 'timestampAttribute' => 'date_update','skipOnEmpty'=>  true],
 //[['date_update','date_create'], 'filter','filter'=>'strtotime'],
         ];
     }
 
+    public function getUrl()
+    {
+        return ['/pages/default/view', 'slug' => $this->slug];
+    }
     public function renderText()
     {
         if (Yii::$app->user->can('admin')) {
