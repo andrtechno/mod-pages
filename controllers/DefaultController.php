@@ -9,7 +9,7 @@ use panix\mod\pages\models\Pages;
 class DefaultController extends WebController
 {
 
-    public function actionView($url)
+    public function actionView($slug)
     {
         $layouts = [
             "@theme/modules/pages/views/default/html",
@@ -17,13 +17,13 @@ class DefaultController extends WebController
         ];
 
         foreach ($layouts as $layout) {
-            if (file_exists(Yii::getAlias($layout) . DIRECTORY_SEPARATOR . $url . '.' . $this->view->defaultExtension)) {
-                return $this->render($layout . '/' . $url, []);
+            if (file_exists(Yii::getAlias($layout) . DIRECTORY_SEPARATOR . $slug . '.' . $this->view->defaultExtension)) {
+                return $this->render($layout . '/' . $slug, []);
             }
         }
 
 
-        $model = Pages::find()->where(['slug' => $url])->one();
+        $model = Pages::find()->where(['slug' => $slug])->published()->one();
         if (!$model) {
             $this->error404();
         }
