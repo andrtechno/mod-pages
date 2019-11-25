@@ -1,21 +1,17 @@
 <?php
 use panix\engine\widgets\Pjax;
+
 Pjax::begin([
-    'timeout' => 5000,
-    'id'=>'pages-view'
+    'id' => 'pages-view'
 ]);
 ?>
-<h1><?= $model->isString('name'); ?></h1>
+    <h1><?= $model->isString('name'); ?></h1>
 
 
-
-<p><?= $model->renderText(); ?></p>
-
+    <div class="mce-content-body">
+        <?= $model->renderText(); ?>
+    </div>
 
 
 <?php Pjax::end(); ?>
-
-
-<?php
-echo panix\mod\comments\widgets\comment\CommentWidget::widget(['model'=>$model]);
-?>
+<?= panix\mod\comments\widgets\comment\CommentWidget::widget(['model' => $model]); ?>

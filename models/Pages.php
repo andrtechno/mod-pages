@@ -3,7 +3,6 @@
 namespace panix\mod\pages\models;
 
 use Yii;
-use panix\engine\behaviors\TranslateBehavior;
 use panix\engine\db\ActiveRecord;
 
 /**
