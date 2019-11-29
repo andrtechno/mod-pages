@@ -17,15 +17,15 @@ class DefaultController extends AdminController
     {
         return [
             'sortable' => [
-                'class' => \panix\engine\grid\sortable\Action::class,
+                'class' => 'panix\engine\grid\sortable\Action',
                 'modelClass' => Pages::class,
             ],
             'switch' => [
-                'class' => \panix\engine\actions\SwitchAction::class,
+                'class' => 'panix\engine\actions\SwitchAction',
                 'modelClass' => Pages::class,
             ],
             'delete' => [
-                'class' => \panix\engine\actions\DeleteAction::class,
+                'class' => 'panix\engine\actions\DeleteAction',
                 'modelClass' => Pages::class,
             ],
         ];
