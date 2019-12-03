@@ -94,7 +94,7 @@ class DefaultController extends AdminController
                     return $json;
                 }
 
-                $this->redirectPage($isNew, $post);
+                return $this->redirectPage($isNew, $post);
             } else {
                 // print_r($model->getErrors());
             }

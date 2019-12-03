@@ -5,9 +5,26 @@ namespace panix\mod\pages\controllers;
 use Yii;
 use panix\engine\controllers\WebController;
 use panix\mod\pages\models\Pages;
+use yii\helpers\ArrayHelper;
 
 class DefaultController extends WebController
 {
+    public function behaviors()
+    {
+        $behaviors[] = [
+            'class' => 'yii\filters\PageCache',
+            'only' => ['view'],
+            'duration' => 86400 * 30,
+            'variations' => [
+                Yii::$app->language,
+            ],
+            'dependency' => [
+                'class' => 'yii\caching\DbDependency',
+                'sql' => 'SELECT MAX(updated_at) FROM ' . Pages::tableName(),
+            ]
+        ];
+        return ArrayHelper::merge(parent::behaviors(), $behaviors);
+    }
 
     public function actionView($slug)
     {
