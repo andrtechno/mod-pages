@@ -9,14 +9,15 @@ use yii\helpers\ArrayHelper;
 
 class DefaultController extends WebController
 {
-    /*public function behaviors()
+    public function behaviors()
     {
         $behaviors[] = [
             'class' => 'yii\filters\PageCache',
             'only' => ['view'],
             'duration' => 86400 * 30,
             'variations' => [
-                Yii::$app->language,
+                //Yii::$app->language,
+                Yii::$app->request->get('slug')
             ],
             'dependency' => [
                 'class' => 'yii\caching\DbDependency',
@@ -24,7 +25,7 @@ class DefaultController extends WebController
             ]
         ];
         return ArrayHelper::merge(parent::behaviors(), $behaviors);
-    }*/
+    }
 
     public function actionView($slug)
     {
