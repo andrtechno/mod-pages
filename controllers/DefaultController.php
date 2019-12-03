@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 
 class DefaultController extends WebController
 {
-    public function behaviors()
+    /*public function behaviors()
     {
         $behaviors[] = [
             'class' => 'yii\filters\PageCache',
@@ -24,7 +24,7 @@ class DefaultController extends WebController
             ]
         ];
         return ArrayHelper::merge(parent::behaviors(), $behaviors);
-    }
+    }*/
 
     public function actionView($slug)
     {
