@@ -40,7 +40,13 @@ class DefaultController extends WebController
             }
         }
 
-        $model = Pages::find()->where(['slug' => $slug])->published()->one();
+        $model = Pages::find()
+            ->where(['slug' => $slug])
+            ->published()
+           // ->cache(3200, new \yii\caching\DbDependency(['sql' => 'SELECT MAX(updated_at) FROM ' . Pages::tableName()]))
+            ->one();
+
+
         if (!$model) {
             $this->error404();
         }
