@@ -28,7 +28,7 @@ class Pages extends ActiveRecord
     public function getGridColumns()
     {
         return [
-            'id'=>[
+            'id' => [
                 'attribute' => 'id',
                 'contentOptions' => ['class' => 'text-center'],
             ],
@@ -114,6 +114,7 @@ class Pages extends ActiveRecord
     {
         return ['/pages/default/view', 'slug' => $this->slug];
     }
+
     public function renderText()
     {
         if (Yii::$app->user->can('admin')) {
@@ -124,17 +125,20 @@ class Pages extends ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(\panix\mod\user\models\User::class, ['id' => 'user_id']);
+        return $this->hasOne(Yii::$app->user->identityClass, ['id' => 'user_id']);
     }
 
     public function behaviors()
     {
-        return \yii\helpers\ArrayHelper::merge([
-            'commentBehavior' => [
-                'class' => \panix\mod\comments\components\CommentBehavior::class,
+        $b=[];
+        if (Yii::$app->hasModule('comments')) {
+            $b['commentBehavior'] = [
+                'class' => 'panix\mod\comments\components\CommentBehavior',
                 'owner_title' => 'name',
-            ],
-        ], parent::behaviors());
+
+            ];
+        }
+        return \yii\helpers\ArrayHelper::merge($b, parent::behaviors());
     }
 
 }

@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 
 class DefaultController extends WebController
 {
-    public function behaviors()
+    public function behaviors1()
     {
         $behaviors[] = [
             'class' => 'yii\filters\PageCache',
@@ -39,7 +39,6 @@ class DefaultController extends WebController
                 return $this->render($layout . '/' . $slug, []);
             }
         }
-
 
         $model = Pages::find()->where(['slug' => $slug])->published()->one();
         if (!$model) {
