@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use panix\engine\bootstrap\ActiveForm;
-use panix\ext\tinymce\TinyMce;
+
 
 $form = ActiveForm::begin();
 ?>
@@ -10,13 +10,37 @@ $form = ActiveForm::begin();
         <h5><?= Html::encode($this->context->pageName) ?></h5>
     </div>
     <div class="card-body">
-        <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
-        <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
-        <?=
-        $form->field($model, 'text')->widget(TinyMce::class, [
-            'options' => ['rows' => 6],
+
+        <?php
+
+        $tabs = [];
+
+
+        $tabs[] = [
+            'label' => $model::t('TAB_MAIN'),
+            'content' => $this->render('_main', ['form' => $form, 'model' => $model]),
+            'active' => true,
+            'options' => ['class' => 'flex-sm-fill text-center nav-item'],
+        ];
+
+
+        $tabs[] = [
+            'label' => Yii::t('seo/default', 'TAB_SEO'),
+            'content' => $this->render('@seo/views/admin/default/_module_seo', ['model' => $model]),
+            'options' => ['class' => 'flex-sm-fill text-center nav-item'],
+        ];
+
+
+        echo \panix\engine\bootstrap\Tabs::widget([
+            //'encodeLabels'=>true,
+            'options' => [
+                'class' => 'nav-pills flex-column flex-sm-row nav-tabs-static'
+            ],
+            'items' => $tabs,
         ]);
+
         ?>
+
     </div>
     <div class="card-footer text-center">
         <?= $model->submitButton(); ?>

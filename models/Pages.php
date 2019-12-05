@@ -131,6 +131,12 @@ class Pages extends ActiveRecord
     public function behaviors()
     {
         $b=[];
+        if (Yii::$app->getModule('seo'))
+            $b['seo'] = [
+                'class' => '\panix\mod\seo\components\SeoBehavior',
+                'url' => $this->getUrl()
+            ];
+
         if (Yii::$app->hasModule('comments')) {
             $b['commentBehavior'] = [
                 'class' => 'panix\mod\comments\components\CommentBehavior',
