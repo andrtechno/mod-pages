@@ -2,6 +2,7 @@
 
 namespace panix\mod\pages\models;
 
+use panix\mod\sitemap\behaviors\SitemapBehavior;
 use Yii;
 use panix\engine\db\ActiveRecord;
 
@@ -11,6 +12,8 @@ use panix\engine\db\ActiveRecord;
  * @property integer $id
  * @property string $name
  * @property string $text
+ * @property integer $created_at
+ * @property integer $updated_at
  */
 class Pages extends ActiveRecord
 {
@@ -137,6 +140,26 @@ class Pages extends ActiveRecord
                 'url' => $this->getUrl()
             ];
 
+        if (Yii::$app->getModule('sitemap')) {
+            $b['sitemap'] = [
+                'class' => SitemapBehavior::class,
+                //'batchSize' => 100,
+                'scope' => function ($model) {
+                    /** @var \yii\db\ActiveQuery $model */
+                    $model->select(['slug', 'updated_at']);
+                    $model->where(['switch' => 1]);
+                },
+                'dataClosure' => function ($model) {
+                    /** @var self $model */
+                    return [
+                        'loc' => $model->getUrl(),
+                        'lastmod' => $model->updated_at,
+                        'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
+                        'priority' => 0.1
+                    ];
+                }
+            ];
+        }
         if (Yii::$app->hasModule('comments')) {
             $b['commentBehavior'] = [
                 'class' => 'panix\mod\comments\components\CommentBehavior',
