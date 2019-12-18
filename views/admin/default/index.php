@@ -5,7 +5,7 @@ use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
 
 Pjax::begin([
-    'id'=>  'pjax-grid-'.mb_strtolower((new \ReflectionClass($dataProvider->query->modelClass))->getShortName()),
+    'dataProvider'=>$dataProvider
 ]);
 //echo Html::beginForm(['/admin/pages/default/test'],'post',['id'=>'test','name'=>'test']);
 echo GridView::widget([
