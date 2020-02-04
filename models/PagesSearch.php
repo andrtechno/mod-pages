@@ -8,7 +8,7 @@ use panix\engine\data\ActiveDataProvider;
 use panix\mod\pages\models\Pages;
 use panix\mod\pages\models\PagesTranslate;
 /**
- * PagesSearch represents the model behind the search form about `app\modules\pages\models\Pages`.
+ * PagesSearch represents the model behind the search form about `panix\mod\pages\models\Pages`.
  */
 class PagesSearch extends Pages {
 
