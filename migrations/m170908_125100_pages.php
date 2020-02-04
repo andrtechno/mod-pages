@@ -63,8 +63,8 @@ class m170908_125100_pages extends Migration
 
         $columns = ['object_id', 'language_id', 'name', 'text'];
         $this->batchInsert(PagesTranslate::tableName(), $columns, [
-            [1, Yii::$app->language, 'О компании', ''],
-            [2, Yii::$app->language, 'Тест', ''],
+            [1, 1, 'О компании', ''],
+            [2, 1, 'Тест', ''],
         ]);
     }
 
