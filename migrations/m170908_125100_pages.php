@@ -56,8 +56,8 @@ class m170908_125100_pages extends Migration
 
         $columns = ['slug', 'user_id', 'ordern', 'created_at'];
         $this->batchInsert(Pages::tableName(), $columns, [
-            ['about', 1, 1, date('Y-m-d H:i:s')],
-            ['mypage', 1, 2, date('Y-m-d H:i:s')],
+            ['about', 1, 1, time()],
+            ['mypage', 1, 2, time()],
         ]);
 
 
