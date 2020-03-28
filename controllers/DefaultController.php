@@ -6,6 +6,7 @@ use Yii;
 use panix\engine\controllers\WebController;
 use panix\mod\pages\models\Pages;
 use yii\helpers\ArrayHelper;
+use yii\web\View;
 
 class DefaultController extends WebController
 {
@@ -40,20 +41,24 @@ class DefaultController extends WebController
             }
         }
 
-        $model = Pages::find()
+        $this->dataModel = Pages::find()
             ->where(['slug' => $slug])
             ->published()
            // ->cache(3200, new \yii\caching\DbDependency(['sql' => 'SELECT MAX(updated_at) FROM ' . Pages::tableName()]))
             ->one();
 
-
-        if (!$model) {
+        if (!$this->dataModel) {
             $this->error404();
         }
-        $this->pageName = $model->name;
+        $this->pageName = $this->dataModel->name;
         $this->breadcrumbs = [$this->pageName];
+
+        $this->view->setModel($this->dataModel);
+
+
+
         $this->view->title = $this->pageName;
-        return $this->render('view', ['model' => $model]);
+        return $this->render('view', ['model' => $this->dataModel]);
     }
 
 }

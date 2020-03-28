@@ -136,8 +136,8 @@ class Pages extends ActiveRecord
         $b=[];
         if (Yii::$app->getModule('seo'))
             $b['seo'] = [
-                'class' => '\panix\mod\seo\components\SeoBehavior',
-                'url' => $this->getUrl()
+                'class' => '\panix\mod\seo\components\SeoBehaviorNew',
+               // 'url' => $this->getUrl()
             ];
 
         if (Yii::$app->getModule('sitemap')) {
