@@ -1,13 +1,13 @@
-# Модуль Новая почта
+# mod-pages
 
 Module for PIXELION CMS
 
-[![Latest Stable Version](https://poser.pugx.org/panix/mod-novaposhta/v/stable)](https://packagist.org/packages/panix/mod-novaposhta)
-[![Total Downloads](https://poser.pugx.org/panix/mod-novaposhta/downloads)](https://packagist.org/packages/panix/mod-novaposhta)
-[![Monthly Downloads](https://poser.pugx.org/panix/mod-novaposhta/d/monthly)](https://packagist.org/packages/panix/mod-novaposhta)
-[![Daily Downloads](https://poser.pugx.org/panix/mod-novaposhta/d/daily)](https://packagist.org/packages/panix/mod-novaposhta)
-[![Latest Unstable Version](https://poser.pugx.org/panix/mod-novaposhta/v/unstable)](https://packagist.org/packages/panix/mod-novaposhta)
-[![License](https://poser.pugx.org/panix/mod-novaposhta/license)](https://packagist.org/packages/panix/mod-novaposhta)
+[![Latest Stable Version](https://poser.pugx.org/panix/mod-pages/v/stable)](https://packagist.org/packages/panix/mod-pages)
+[![Total Downloads](https://poser.pugx.org/panix/mod-pages/downloads)](https://packagist.org/packages/panix/mod-pages)
+[![Monthly Downloads](https://poser.pugx.org/panix/mod-pages/d/monthly)](https://packagist.org/packages/panix/mod-pages)
+[![Daily Downloads](https://poser.pugx.org/panix/mod-pages/d/daily)](https://packagist.org/packages/panix/mod-pages)
+[![Latest Unstable Version](https://poser.pugx.org/panix/mod-pages/v/unstable)](https://packagist.org/packages/panix/mod-pages)
+[![License](https://poser.pugx.org/panix/mod-pages/license)](https://packagist.org/packages/panix/mod-pages)
 
 
 ## Installation
@@ -17,13 +17,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 #### Either run
 
 ```
-php composer require --prefer-dist panix/mod-novaposhta "*"
+php composer require --prefer-dist panix/mod-pages "*"
 ```
 
 or add
 
 ```
-"panix/mod-novaposhta": "*"
+"panix/mod-pages": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -32,10 +32,10 @@ to the require section of your `composer.json` file.
 #### Add to web config.
 ```
     'modules' => [
-        'novaposhta' => ['class' => 'panix\mod\novaposhta\Module'],
+        'pages' => ['class' => 'panix\mod\pages\Module'],
     ],
 ```
 #### Migrate
 ```
-php yii migrate --migrationPath=vendor/panix/mod-novaposhta/migrations
+php yii migrate --migrationPath=vendor/panix/mod-pages/migrations
 ```
