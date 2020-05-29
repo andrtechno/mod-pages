@@ -33,6 +33,7 @@ class Module extends WebModule implements BootstrapInterface
                         'label' => Yii::t('pages/default', 'MODULE_NAME'),
                         'url' => ['/admin/pages'],
                         'icon' => $this->icon,
+                        'visible' => Yii::$app->user->can('/pages/admin/default/index') || Yii::$app->user->can('/pages/admin/default/*')
                     ],
                 ],
             ],
