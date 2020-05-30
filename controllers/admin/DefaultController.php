@@ -108,4 +108,9 @@ class DefaultController extends AdminController
             'model' => $model,
         ]);
     }
+
+    public function actionCreate()
+    {
+        return $this->actionUpdate(false);
+    }
 }
