@@ -34,14 +34,16 @@ class DefaultController extends AdminController
     public function actionIndex()
     {
         $this->pageName = Yii::t('pages/default', 'MODULE_NAME');
-        $this->buttons = [
-            [
-                'icon' => 'add',
-                'label' => Yii::t('pages/default', 'CREATE_BTN'),
-                'url' => ['create'],
-                'options' => ['class' => 'btn btn-success']
-            ]
-        ];
+        if (Yii::$app->user->can("/{$this->module->id}/{$this->id}/*") ||  Yii::$app->user->can("/{$this->module->id}/{$this->id}/create")) {
+            $this->buttons = [
+                [
+                    'icon' => 'add',
+                    'label' => Yii::t('pages/default', 'CREATE_BTN'),
+                    'url' => ['create'],
+                    'options' => ['class' => 'btn btn-success']
+                ]
+            ];
+        }
         $this->breadcrumbs = [
             $this->pageName
         ];
@@ -60,14 +62,16 @@ class DefaultController extends AdminController
 
         $model = Pages::findModel($id);
         $this->pageName = Yii::t('pages/default', 'CREATE_BTN');
-        $this->buttons = [
-            [
-                'icon' => 'add',
-                'label' => Yii::t('pages/default', 'CREATE_BTN'),
-                'url' => ['create'],
-                'options' => ['class' => 'btn btn-success']
-            ]
-        ];
+        if (Yii::$app->user->can("/{$this->module->id}/{$this->id}/*") ||  Yii::$app->user->can("/{$this->module->id}/{$this->id}/create")) {
+            $this->buttons = [
+                [
+                    'icon' => 'add',
+                    'label' => Yii::t('pages/default', 'CREATE_BTN'),
+                    'url' => ['create'],
+                    'options' => ['class' => 'btn btn-success']
+                ]
+            ];
+        }
         $this->breadcrumbs[] = [
             'label' => Yii::t('pages/default', 'MODULE_NAME'),
             'url' => ['index']
