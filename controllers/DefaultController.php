@@ -51,7 +51,7 @@ class DefaultController extends WebController
             $this->error404();
         }
         $this->pageName = $this->dataModel->name;
-        $this->breadcrumbs = [$this->pageName];
+        $this->view->params['breadcrumbs'] = [$this->pageName];
 
         $this->view->setModel($this->dataModel);
 
