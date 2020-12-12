@@ -42,8 +42,8 @@ class DefaultController extends WebController
         }
 
         $this->dataModel = Pages::find()
-            ->where(['slug' => $slug])
             ->published()
+            ->where(['slug' => $slug])
            // ->cache(3200, new \yii\caching\DbDependency(['sql' => 'SELECT MAX(updated_at) FROM ' . Pages::tableName()]))
             ->one();
 
@@ -54,7 +54,7 @@ class DefaultController extends WebController
         $this->view->params['breadcrumbs'] = [$this->pageName];
 
         $this->view->setModel($this->dataModel);
-
+        $this->dataModel->updateCounters(['views' => 1]);
 
 
         $this->view->title = $this->pageName;

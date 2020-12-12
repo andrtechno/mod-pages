@@ -101,6 +101,7 @@ class Pages extends ActiveRecord
             [['name', 'text', 'slug'], 'required'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['name', 'slug'], 'trim'],
+            [['show_header', 'show_footer'], 'boolean'],
             ['slug', '\panix\engine\validators\UrlValidator', 'attributeCompare' => 'name'],
             ['slug', 'match',
                 'pattern' => '/^([a-z0-9-])+$/i',

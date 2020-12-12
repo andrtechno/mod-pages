@@ -14,3 +14,5 @@ $form->field($model, 'text')->widget(TinyMce::class, [
     'options' => ['rows' => 6],
 ]);
 ?>
+<?= $form->field($model, 'show_header')->checkbox() ?>
+<?= $form->field($model, 'show_footer')->checkbox() ?>

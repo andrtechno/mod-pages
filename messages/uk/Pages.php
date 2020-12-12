@@ -6,5 +6,7 @@ return [
     'UPDATED_AT' => 'Дата поновлення',
     'VIEWS' => 'Перегляди',
     'SLUG' => 'URL-адресу',
-    'TAB_MAIN' => 'Основний'
+    'TAB_MAIN' => 'Основний',
+    'SHOW_HEADER' => 'Показати в шапці (header)',
+    'SHOW_FOOTER' => 'Показати в футере (footer)',
 ];

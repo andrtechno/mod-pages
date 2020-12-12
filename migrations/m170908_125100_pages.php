@@ -28,6 +28,8 @@ class m170908_125100_pages extends Migration
             'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer()->unsigned(),
             'switch' => $this->boolean()->defaultValue(1),
+            'show_header' => $this->boolean()->defaultValue(0),
+            'show_footer' => $this->boolean()->defaultValue(0),
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null()
         ], $tableOptions);
