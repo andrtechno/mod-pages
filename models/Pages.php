@@ -134,20 +134,21 @@ class Pages extends ActiveRecord
 
     public function behaviors()
     {
-        $b=[];
+        $b = [];
         if (Yii::$app->getModule('seo'))
             $b['seo'] = [
                 'class' => '\panix\mod\seo\components\SeoBehaviorNew',
-               // 'url' => $this->getUrl()
+                // 'url' => $this->getUrl()
             ];
 
         if (Yii::$app->getModule('sitemap')) {
             $b['sitemap'] = [
                 'class' => SitemapBehavior::class,
                 //'batchSize' => 100,
+                'groupName' => 'Страницы',
                 'scope' => function ($model) {
                     /** @var \yii\db\ActiveQuery $model */
-                    $model->select(['slug', 'updated_at']);
+                    // $model->select(['slug', 'updated_at']);
                     $model->where(['switch' => 1]);
                 },
                 'dataClosure' => function ($model) {
@@ -155,6 +156,7 @@ class Pages extends ActiveRecord
                     return [
                         'loc' => $model->getUrl(),
                         'lastmod' => $model->updated_at,
+                        'name' => $model->name,
                         'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
                         'priority' => 0.1
                     ];
