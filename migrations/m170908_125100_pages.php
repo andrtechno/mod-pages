@@ -1,5 +1,4 @@
 <?php
-namespace panix\mod\pages\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -7,10 +6,11 @@ namespace panix\mod\pages\migrations;
  *
  * Class m170908_125100_pages
  */
-use Yii;
+
 use yii\db\Migration;
 use panix\mod\pages\models\Pages;
 use panix\mod\pages\models\PagesTranslate;
+
 class m170908_125100_pages extends Migration
 {
 
