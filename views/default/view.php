@@ -4,7 +4,7 @@ use panix\engine\widgets\Pjax;
 /**
  * @var \panix\mod\pages\models\Pages $model
  */
-Pjax::begin();
+Pjax::begin(['linkSelector'=>'a[data-pjax=1]']);
 ?>
     <h1><?= ($this->h1) ? $this->h1 : $model->isString('name'); ?></h1>
     <div class="mce-content-body">
