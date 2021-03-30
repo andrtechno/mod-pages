@@ -80,6 +80,10 @@ class Pages extends ActiveRecord
             ],
             'DEFAULT_COLUMNS' => [
                 ['class' => 'panix\engine\grid\columns\CheckboxColumn'],
+                [
+                    'class' => \panix\engine\grid\sortable\Column::class,
+                    'url' => ['/admin/pages/default/sortable']
+                ],
             ],
         ];
     }
