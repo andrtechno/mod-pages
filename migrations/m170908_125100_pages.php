@@ -7,7 +7,7 @@
  * Class m170908_125100_pages
  */
 
-use yii\db\Migration;
+use panix\engine\db\Migration;
 use panix\mod\pages\models\Pages;
 use panix\mod\pages\models\PagesTranslate;
 
@@ -27,9 +27,9 @@ class m170908_125100_pages extends Migration
             'slug' => $this->string(255)->notNull(),
             'views' => $this->integer()->defaultValue(0),
             'ordern' => $this->integer()->unsigned(),
-            'switch' => $this->boolean()->defaultValue(1),
-            'show_header' => $this->boolean()->defaultValue(0),
-            'show_footer' => $this->boolean()->defaultValue(0),
+            'switch' => $this->boolean()->defaultValue(true),
+            'show_header' => $this->boolean()->defaultValue(false),
+            'show_footer' => $this->boolean()->defaultValue(false),
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null()
         ], $tableOptions);
