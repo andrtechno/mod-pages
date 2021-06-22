@@ -42,8 +42,8 @@ class DefaultController extends WebController
         }
 
         $this->dataModel = Pages::find()
-            ->published()
             ->where(['slug' => $slug])
+            ->published()
            // ->cache(3200, new \yii\caching\DbDependency(['sql' => 'SELECT MAX(updated_at) FROM ' . Pages::tableName()]))
             ->one();
 
