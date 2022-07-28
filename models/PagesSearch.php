@@ -66,8 +66,10 @@ class PagesSearch extends Pages {
     }
     public static function getSort() {
         $sort = new \yii\data\Sort([
+            'defaultOrder' => ['ordern' => SORT_DESC],
             'attributes' => [
                 'created_at',
+                'ordern',
                 'updated_at',
                 'views',
                 'name' => [
