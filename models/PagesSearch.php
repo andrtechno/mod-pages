@@ -38,7 +38,7 @@ class PagesSearch extends Pages {
      * @return ActiveDataProvider
      */
     public function search($params) {
-        $query = Pages::find()->translate();
+        $query = Pages::find();
 
         $dataProvider = new ActiveDataProvider([
                     'query' => $query,
